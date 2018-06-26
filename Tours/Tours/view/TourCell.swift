@@ -22,7 +22,6 @@ class BaseCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 class TourCell: BaseCell {
@@ -59,7 +58,6 @@ class TourCell: BaseCell {
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
-    
     
     override func setupViews() {
         
