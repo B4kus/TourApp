@@ -10,9 +10,6 @@ import UIKit
 
 class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    
-    
-    
     lazy var collectonView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -27,11 +24,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     let titleName = ["Featured", "Popluar", "Trending"]
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         
         collectonView.register(MenuCell.self, forCellWithReuseIdentifier: "title")
         addSubview(collectonView)
@@ -42,7 +36,6 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         collectonView.selectItem(at: selectedInedxPath, animated: false, scrollPosition: [])
         
         setupHorizontalBar()
-        
         
     }
     
@@ -80,8 +73,6 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         return 3
     }
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectonView.dequeueReusableCell(withReuseIdentifier: "title", for: indexPath) as! MenuCell
         
@@ -113,32 +104,12 @@ class MenuCell: BaseCell {
         return label
     }()
     
-    override var isHighlighted: Bool {
-        didSet {
-            
-            
-        }
-        
-    }
-    
-    override var isSelected: Bool {
-        didSet {
-            
-            
-        }
-        
-    }
-    
     override func setupViews() {
         super.setupViews()
         addSubview(titleLabel)
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: titleLabel)
         addConstraintsWithFormat(format: "V:|[v0]|", views: titleLabel)
-        
-//        addConstraint(.init(item: titleLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-//        addConstraint(.init(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-    
+
     }
-    
 }
