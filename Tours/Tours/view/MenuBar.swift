@@ -22,6 +22,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
     }()
     
+    var homeController: HomeController?
+    
     let titleName = ["Featured", "Popluar", "Trending"]
     
     override init(frame: CGRect) {
@@ -60,12 +62,14 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
   
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let xValue = CGFloat(indexPath.item) * frame.width / 4
-        horizontalBarLeftAnchorConstraints?.constant = xValue
+//        let xValue = CGFloat(indexPath.item) * frame.width / 4
+//        horizontalBarLeftAnchorConstraints?.constant = xValue
+//        
+//        UIView.animate(withDuration: 0.50) {
+//            self.layoutIfNeeded()
+//        }
         
-        UIView.animate(withDuration: 0.50) {
-            self.layoutIfNeeded()
-        }
+        homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
         
     }
     
