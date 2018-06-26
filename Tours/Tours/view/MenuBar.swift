@@ -10,6 +10,10 @@ import UIKit
 
 class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
+    var homeController: HomeController?
+    var horizontalBarLeftAnchorConstraints: NSLayoutConstraint?
+    let titleName = ["Featured", "Popluar", "Trending"]
+    
     lazy var collectonView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -21,10 +25,6 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         return cv
         
     }()
-    
-    var homeController: HomeController?
-    
-    let titleName = ["Featured", "Popluar", "Trending"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,7 +41,6 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
     }
     
-    var horizontalBarLeftAnchorConstraints: NSLayoutConstraint?
     func setupHorizontalBar() {
         
         let horizontalBar = UIView()
@@ -52,51 +51,48 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         horizontalBarLeftAnchorConstraints = horizontalBar.leftAnchor.constraintEqualToSystemSpacingAfter(self.leftAnchor, multiplier: 1)
         horizontalBarLeftAnchorConstraints?.isActive = true
         
-        
-        horizontalBar.bottomAnchor.constraintEqualToSystemSpacingBelow(self.bottomAnchor, multiplier: 1).isActive = true
+        horizontalBar.bottomAnchor.constraintEqualToSystemSpacingBelow(self.bottomAnchor, multiplier: 0).isActive = true
         horizontalBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
         horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        
         
     }
   
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let xValue = CGFloat(indexPath.item) * frame.width / 4
-//        horizontalBarLeftAnchorConstraints?.constant = xValue
-//        
-//        UIView.animate(withDuration: 0.50) {
-//            self.layoutIfNeeded()
-//        }
         
         homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
         
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 3
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectonView.dequeueReusableCell(withReuseIdentifier: "title", for: indexPath) as! MenuCell
-        
         cell.titleLabel.text = titleName[indexPath.item]
-        
         return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: frame.width / 4, height: frame.height)
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
         return 0
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 class MenuCell: BaseCell {
@@ -110,8 +106,8 @@ class MenuCell: BaseCell {
     
     override func setupViews() {
         super.setupViews()
-        addSubview(titleLabel)
         
+        addSubview(titleLabel)
         addConstraintsWithFormat(format: "H:|[v0]|", views: titleLabel)
         addConstraintsWithFormat(format: "V:|[v0]|", views: titleLabel)
 
