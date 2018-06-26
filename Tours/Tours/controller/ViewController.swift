@@ -11,6 +11,10 @@ import Firebase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    let cellId = "cellId"
+    let popularCellId = "popularId"
+    let trendingCellId = "trendingId"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,25 +23,26 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationController?.navigationBar.isTranslucent = false
         setupCollectionView()
         setupMenuBar()
+        
     }
-    
-    let cellId = "cellId"
+
     func setupCollectionView() {
         
         collectionView?.backgroundColor = .white
-        //collectionView?.register(TourCell.self, forCellWithReuseIdentifier: "feed")
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        
-        if let flowlayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(PopularCell.self, forCellWithReuseIdentifier: popularCellId)
+        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
 
+        if let flowlayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            
             flowlayout.scrollDirection = .horizontal
             flowlayout.minimumLineSpacing = 0
-
+            
         }
-
+        
         collectionView?.isPagingEnabled = true
+        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
     }
     
@@ -63,16 +68,31 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.scrollToItem(at: indexPath, at: [], animated: true)
         
     }
-    
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         
-        let colors: [UIColor] = [.blue, .red, .green]
-        cell.backgroundColor = colors[indexPath.item]
+        let identifier: String
+        
+        if indexPath.item == 1 {
+            
+            identifier = popularCellId
+            
+        } else if indexPath.item == 2{
+            
+            identifier = popularCellId
+            
+        } else {
+            
+            identifier = cellId
+            
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        
         return cell
     }
     
@@ -82,28 +102,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height:view.frame.height)
+        return CGSize(width: view.frame.width, height:view.frame.height - 50)
     }
-    
-    //    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //        return 5
-    //    }
-    //
-    //    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //
-    //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feed", for: indexPath)
-    //
-    //        return cell
-    //    }
-    
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //
-    //        return CGSize(width: view.frame.width, height: 226)
-    //    }
-    //
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    //        return 0
-    //    }
-    
     
 }
