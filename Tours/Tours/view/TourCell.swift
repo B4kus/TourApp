@@ -26,12 +26,22 @@ class BaseCell: UICollectionViewCell {
 
 class TourCell: BaseCell {
     
+    let shadowView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = false
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.6
+        view.layer.shadowOffset = CGSize.zero
+        view.layer.shadowRadius = 5
+        return view
+    }()
+    
     let thumbnailImageView: UIImageView = {
         
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.blue
-        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         return imageView
         
@@ -61,25 +71,27 @@ class TourCell: BaseCell {
     
     override func setupViews() {
         
-        addSubview(thumbnailImageView)
+        shadowView.addSubview(thumbnailImageView)
+        addSubview(shadowView)
         addSubview(tourTimeLabel)
         addSubview(titleLabel)
         addSubview(subTitle)
         
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
-        addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-|", views: thumbnailImageView, tourTimeLabel)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: shadowView)
+        addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-|", views: shadowView, tourTimeLabel)
         addConstraintsWithFormat(format: "H:[v0(44)]-16-|", views: tourTimeLabel)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: thumbnailImageView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: thumbnailImageView)
         
-        addConstraint(.init(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: thumbnailImageView, attribute: .bottom, multiplier: 1, constant: 8))
+        addConstraint(.init(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: shadowView, attribute: .bottom, multiplier: 1, constant: 8))
         addConstraint(.init(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: tourTimeLabel, attribute: .left, multiplier: 1, constant: -8))
-        addConstraint(.init(item: titleLabel, attribute: .left, relatedBy: .equal, toItem: thumbnailImageView, attribute: .left, multiplier: 1, constant: 0))
+        addConstraint(.init(item: titleLabel, attribute: .left, relatedBy: .equal, toItem: shadowView, attribute: .left, multiplier: 1, constant: 0))
         addConstraint(.init(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
         
         addConstraint(.init(item: subTitle, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 8))
         addConstraint(.init(item: subTitle, attribute: .right, relatedBy: .equal, toItem: tourTimeLabel, attribute: .left, multiplier: 1, constant: -8))
         addConstraint(.init(item: subTitle, attribute: .left, relatedBy: .equal, toItem: titleLabel, attribute: .left, multiplier: 1, constant: 0))
         addConstraint(.init(item: subTitle, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
-        
-        
+
     }
 }
