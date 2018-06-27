@@ -9,8 +9,13 @@
 import UIKit
 
 
+protocol CollectionCellDelegate {
+    func selectedItem()
+}
+
 class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    var delegate: CollectionCellDelegate?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +38,7 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         collectionView.register(TourCell.self, forCellWithReuseIdentifier: cellId)
         
         
+        
     }
     
     var colors: [UIColor] = [.red, .blue, .green, .gray, .brown]
@@ -45,6 +51,7 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TourCell
         cell.thumbnailImageView.backgroundColor = colors[indexPath.item]
+        
         return cell
     }
     
@@ -58,7 +65,7 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         return 0
     }
     
-    
-    
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.selectedItem()
+    }
 }
