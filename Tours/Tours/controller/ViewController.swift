@@ -25,13 +25,22 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         
 
-        navigationController?.navigationBar.isTranslucent = false
         setupCollectionView()
         setupMenuBar()
         feedCell.collectionView.delegate = self
         setupNaviagtionTitle()
+        //navigationController?.view.backgroundColor = navigationController?.navigationBar.barTintColor
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.barStyle = .default
         
     }
     func setupNaviagtionTitle() {
