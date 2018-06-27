@@ -9,20 +9,39 @@
 import UIKit
 import Firebase
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CollectionCellDelegate {
+    func selectedItem() {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
+    
     
     let cellId = "cellId"
     let popularCellId = "popularId"
     let trendingCellId = "trendingId"
+    let feedCell = FeedCell()
+    let contentInsert: CGFloat = 90
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Tours"
-        navigationController?.navigationBar.prefersLargeTitles = true
+
         navigationController?.navigationBar.isTranslucent = false
         setupCollectionView()
         setupMenuBar()
+        feedCell.collectionView.delegate = self
+        setupNaviagtionTitle()
+        
+        
+        
+    }
+    func setupNaviagtionTitle() {
+        
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 16, height: view.frame.height))
+        titleLabel.text = "Tours"
+        titleLabel.textColor = .black
+        titleLabel.font = titleLabel.font.withSize(32)
+        navigationItem.titleView = titleLabel
+        
         
     }
 
@@ -41,8 +60,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         
         collectionView?.isPagingEnabled = true
-        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: contentInsert, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: contentInsert, left: 0, bottom: 0, right: 0)
         
     }
     
@@ -59,7 +78,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:|[v0(65)]", views: menuBar)
         
     }
     
@@ -91,7 +110,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! FeedCell
+        
+        cell.delegate = self
         
         return cell
     }
@@ -102,7 +123,21 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height:view.frame.height - 50)
+        return CGSize(width: view.frame.width, height:view.frame.height - contentInsert)
+    }
+    
+    
+    
+}
+
+extension HomeController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
 }
+
+
