@@ -16,6 +16,18 @@ protocol CollectionCellDelegate {
 class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var delegate: CollectionCellDelegate?
+    let cellId = "cellId"
+    var citys = ["Plik00001.jpg","Plik00002.jpg","Plik00003.jpg","Plik00004.jpg","Plik00005.jpg"]
+
+    override func setupViews() {
+        super.setupViews()
+        
+        addSubview(collectionView)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
+        collectionView.register(TourCell.self, forCellWithReuseIdentifier: cellId)
+    
+    }
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -26,39 +38,25 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         return cv
         
     }()
-    
-    let cellId = "cellId"
-    override func setupViews() {
-        super.setupViews()
-        addSubview(collectionView)
-        
-        addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
-        addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
-        
-        collectionView.register(TourCell.self, forCellWithReuseIdentifier: cellId)
-        
-        
-        
-    }
-    
-    var colors: [UIColor] = [.red, .blue, .green, .gray, .brown]
-    
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
         
+        return citys.count
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TourCell
-        cell.thumbnailImageView.backgroundColor = colors[indexPath.item]
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TourCell
+        cell.thumbnailImageView.image = UIImage(named: citys[indexPath.row])
         return cell
+        
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: frame.width, height: 226)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
