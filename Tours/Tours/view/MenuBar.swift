@@ -38,25 +38,47 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         collectonView.selectItem(at: selectedInedxPath, animated: false, scrollPosition: [])
         
         setupHorizontalBar()
-        
+
     }
+    
+    let trackingLine: UIView = {
+        let line = UIView()
+        line.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.00)
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.layer.cornerRadius = 2
+        line.clipsToBounds = true
+        
+        return line
+        
+    }()
+    
+    let horizontalBar: UIView = {
+        
+        let line = UIView()
+        line.backgroundColor = UIColor(red:0.31, green:0.63, blue:0.85, alpha:1.00)
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.layer.cornerRadius = 2
+        line.clipsToBounds = true
+        return line
+        
+    }()
     
     func setupHorizontalBar() {
         
-        let horizontalBar = UIView()
-        horizontalBar.backgroundColor = UIColor(red:0.31, green:0.63, blue:0.85, alpha:1.00)
-        horizontalBar.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(horizontalBar)
-        
-        horizontalBarLeftAnchorConstraints = horizontalBar.leftAnchor.constraintEqualToSystemSpacingAfter(self.leftAnchor, multiplier: 1)
+        addSubview(trackingLine)
+       
+        addConstraintsWithFormat(format:"|[v0]|", views: trackingLine)
+        trackingLine.bottomAnchor.constraintEqualToSystemSpacingBelow(self.bottomAnchor, multiplier: 0).isActive = true
+        trackingLine.heightAnchor.constraint(equalToConstant: 3).isActive = true
+    
+        trackingLine.addSubview(horizontalBar)
+        horizontalBarLeftAnchorConstraints = horizontalBar.leftAnchor.constraintEqualToSystemSpacingAfter(collectonView.leftAnchor, multiplier: 1)
         horizontalBarLeftAnchorConstraints?.isActive = true
-        
         horizontalBar.bottomAnchor.constraintEqualToSystemSpacingBelow(self.bottomAnchor, multiplier: 0).isActive = true
-        horizontalBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
-        horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        horizontalBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1 / 4).isActive = true
+        horizontalBar.heightAnchor.constraint(equalToConstant: 3).isActive = true
         
     }
-  
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -93,14 +115,15 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
 
 class MenuCell: BaseCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.black
         label.textAlignment = NSTextAlignment.center
+        label.font = systemThinFont
         return label
     }()
     
@@ -112,4 +135,6 @@ class MenuCell: BaseCell {
         addConstraintsWithFormat(format: "V:|[v0]|", views: titleLabel)
 
     }
+    
+    
 }
