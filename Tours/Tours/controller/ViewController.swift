@@ -10,28 +10,21 @@ import UIKit
 import Firebase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CollectionCellDelegate {
-    func selectedItem() {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
-    }
-    
     
     let cellId = "cellId"
     let popularCellId = "popularId"
     let trendingCellId = "trendingId"
     let feedCell = FeedCell()
-    let contentInsert: CGFloat = 90
+    let contentInsert: CGFloat = 65
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
+    
         setupCollectionView()
         setupMenuBar()
-        feedCell.collectionView.delegate = self
         setupNaviagtionTitle()
-        //navigationController?.view.backgroundColor = navigationController?.navigationBar.barTintColor
-        
-        
+        feedCell.collectionView.delegate = self
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,12 +36,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         self.navigationController?.navigationBar.barStyle = .default
         
     }
+    
     func setupNaviagtionTitle() {
         
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 16, height: view.frame.height))
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - (view.frame.width / 14), height: view.frame.height))
         titleLabel.text = "Tours"
         titleLabel.textColor = .black
-        titleLabel.font = titleLabel.font.withSize(32)
+        titleLabel.font = systemBoldFont(size: 32)
+        
         navigationItem.titleView = titleLabel
         
         
@@ -75,6 +70,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     
+    func selectedItem() {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
+    
+
     lazy var menuBar: MenuBar = {
         
         let mb = MenuBar()
@@ -86,11 +86,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     private func setupMenuBar() {
         
         view.addSubview(menuBar)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(65)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "H:|-\(view.frame.width / 28)-[v0]-\(view.frame.width / 28)-|", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
         
     }
-    
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = IndexPath(item: menuIndex, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: [], animated: true)
@@ -102,9 +101,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let identifier: String
-        
         if indexPath.item == 1 {
             
             identifier = popularCellId
@@ -120,33 +117,22 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! FeedCell
-        
         cell.delegate = self
-        
         return cell
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        menuBar.horizontalBarLeftAnchorConstraints?.constant = scrollView.contentOffset.x / 4
+        // TO DO: Wyliczycz wartosc 3.23 - watosc scroll 
+        menuBar.horizontalBarLeftAnchorConstraints?.constant = scrollView.contentOffset.x  / 4.27
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: view.frame.width, height:view.frame.height - contentInsert)
     }
-    
-    
-    
 }
 
-extension HomeController {
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-    }
-    
-}
+
 
 
