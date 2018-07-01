@@ -49,7 +49,9 @@ class TourCell: BaseCell {
     
     let tourTimeLabel: UILabel = {
         let tourTime = UILabel()
-        tourTime.backgroundColor = UIColor.red
+        tourTime.text = "2 hours"
+        tourTime.textAlignment = .center
+        tourTime.font = systemThinFont(size: 14)
         return tourTime
     }()
     
@@ -57,6 +59,7 @@ class TourCell: BaseCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Most iconic buldings"
+        label.font = systemBoldFont(size: 18)
         return label
     }()
     
@@ -64,8 +67,8 @@ class TourCell: BaseCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "You will see the most iconic bulding of the city."
-        label.textColor = UIColor.lightGray
         label.adjustsFontSizeToFitWidth = true
+        label.font = systemThinFont(size: 16)
         return label
     }()
     
@@ -77,9 +80,9 @@ class TourCell: BaseCell {
         addSubview(titleLabel)
         addSubview(subTitle)
         
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: shadowView)
-        addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-|", views: shadowView, tourTimeLabel)
-        addConstraintsWithFormat(format: "H:[v0(44)]-16-|", views: tourTimeLabel)
+        addConstraintsWithFormat(format: "H:|-\(self.frame.width / 28)-[v0]-\(self.frame.width / 28)-|", views: shadowView)
+        addConstraintsWithFormat(format: "V:|-\(self.frame.width / 28)-[v0]-8-[v1(44)]-\(self.frame.width / 28)-|", views: shadowView, tourTimeLabel)
+        addConstraintsWithFormat(format: "H:[v0(44)]-\(self.frame.width / 28)-|", views: tourTimeLabel)
         addConstraintsWithFormat(format: "H:|[v0]|", views: thumbnailImageView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: thumbnailImageView)
         
