@@ -17,7 +17,9 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     
     var delegate: CollectionCellDelegate?
     let cellId = "cellId"
-    var citys = ["Plik00001.jpg","Plik00002.jpg","Plik00003.jpg","Plik00004.jpg","Plik00005.jpg"]
+    var citysPhoto = ["Plik00001.jpg","Plik00002.jpg","Plik00003.jpg","Plik00004.jpg","Plik00005.jpg"]
+    var citysName = ["New York", "Warsaw","San Diego","Los Angeles", "Katowice"]
+    
 
     override func setupViews() {
         super.setupViews()
@@ -41,14 +43,15 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return citys.count
+        return citysPhoto.count
 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TourCell
-        cell.thumbnailImageView.image = UIImage(named: citys[indexPath.row])
+        cell.thumbnailImageView.image = UIImage(named: citysPhoto[indexPath.row])
+        cell.titleLabel.text = citysName[indexPath.row]
         return cell
         
     }
