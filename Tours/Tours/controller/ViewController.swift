@@ -8,14 +8,18 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CollectionCellDelegate {
-    
+ 
+ 
+
     let cellId = "cellId"
     let popularCellId = "popularId"
     let trendingCellId = "trendingId"
     let feedCell = FeedCell()
     let contentInsert: CGFloat = 65
+    var dumyData = [Tour]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +28,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupMenuBar()
         setupNaviagtionTitle()
         feedCell.collectionView.delegate = self
-
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +52,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         
     }
+    
+    func selectedItem(city: String, photoName: String) {
+        let view = ToursViewController()
+        view.setUpWithData(city: city, photo: photoName)
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    
+    
 
     func setupCollectionView() {
         
@@ -68,12 +80,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: contentInsert, left: 0, bottom: 0, right: 0)
         
     }
-    
-    
-    func selectedItem() {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
-    }
-    
 
     lazy var menuBar: MenuBar = {
         
@@ -131,8 +137,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         return CGSize(width: view.frame.width, height:view.frame.height - contentInsert)
     }
+    
+ 
 }
-
-
-
 
