@@ -9,39 +9,38 @@
 import UIKit
 
 class ToursViewController: UIViewController, CollectionCellDelegateSelected {
-    
-    
-    func selectedItem() {
-        self.navigationController?.pushViewController(DetailViewController(), animated: true)
-    }
-    
-
-    
+ 
     let tourView = TourView()
     var isOpen = false
+    var cityName = ""
+    var photoName = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-        //tourView.setupViews(view: view)
         let tap = UITapGestureRecognizer(target: self, action: #selector(ToursViewController.flip))
         tourView.viewtest.addGestureRecognizer(tap)
         tourView.delegate = self
-
-        
+        tourView.cityPhoto.image = UIImage(named: photoName)
+        tourView.title.text = cityName
+    
     }
 
 
     override func viewWillLayoutSubviews() {
         
-        tourView.setupViews(view: view)
+            tourView.setupViews(view: view)
+    }
+    
+    func setUpWithData(city: String, photo: String) {
+        
+        self.cityName = city
+        self.photoName = photo
+
         
     }
     
-    
-    
 
-    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -59,7 +58,6 @@ class ToursViewController: UIViewController, CollectionCellDelegateSelected {
             tourView.cityPhoto.isHidden = false
             tourView.cityInfo.isHidden = true
             tourView.title.isHidden = true
-            print("tap")
             UIView.transition(with: tourView.viewtest, duration: 0.4, options: .transitionFlipFromRight, animations: nil, completion: nil)
             navigationController?.navigationBar.tintColor = systemBlueColor
             
@@ -72,14 +70,13 @@ class ToursViewController: UIViewController, CollectionCellDelegateSelected {
             tourView.cityInfo.isHidden = false
             tourView.title.isHidden = false
             UIView.transition(with: tourView.viewtest, duration: 0.4, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-            print("Top tap")
-            print(isOpen)
-      
         }
-        
-        
     }
-
+    
+    func selectedItem() {
+        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
+    
     
     
 }

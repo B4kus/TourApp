@@ -11,15 +11,18 @@ import UIKit
 
 protocol CollectionCellDelegateSelected {
     func selectedItem()
+    
 }
 
 class TourView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
     var delegate: CollectionCellDelegateSelected?
+    let download = DownloadHeandler()
     
     let cellId = "cellID"
-    let headerID = "Header"
-    var citys = ["Plik00001.jpg","Plik00002.jpg","Plik00003.jpg","Plik00004.jpg","Plik00005.jpg"]
+    
+    var tourPhotos = ["Plik00001.jpg","Plik00002.jpg","Plik00003.jpg","Plik00004.jpg","Plik00005.jpg"]
+    var tourNames = ["Night time", "Most iconic buldings", "Food steps", "Rooftops", "Green way"]
     
     lazy var viewtest: UIView = {
         
@@ -47,7 +50,7 @@ class TourView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         let textView = UITextView()
         textView.backgroundColor = .white
-        textView.text = "Można zaryzykować stwierdzenie, że Belgowie mają teraz najmocniejszy zespół w XXI wieku. Wielu z Czerwonych Diabłów od lat gra w najlepszych europejskich klubach, mimo to w kadrze nie potrafili do siebie dotrzeć – prędzej czy później drużyna rozczarowywała na wielkich turniejach. Belgom przylgnęła łatka czarnego koniamistrzostw Europy i świata, jednak nic z tego nie wynikało. Wydaje się, że w Rosji doszło do przełamania, bo Czerwone Diabły wreszcie grają tak, jak oczekują kibice. Widowiskowo, skutecznie i pewnie.W efekcie w grupie F byli najlepsi, wygrywając z każdym. Także z Anglikami, choć Gareth Southgate nie skorzystał z wielu zawodników pierwszego wyboru. W znakomitej formie jest Romelu Lukaku, który w fazie grupowej strzelił cztery gole."
+        textView.text = "The City of New York, often called New York City (NYC) or simply New York, is the most populous city in the United States.With an estimated 2017 population of 8,622,698 distributed over a land area of about 302.6 square miles (784 km2),New York City is also the most densely populated major city in the United States.Located at the southern tip of the state of New York, the city is the center of the New York metropolitan area, the largest metropolitan area in the world by urban landmass and one of the world's most populous megacities, with an estimated 20,320,876 people in its 2017 Metropolitan Statistical Area and 23,876,155 residents in its Combined Statistical Area. A global power city, New York City has been described as the cultural, financial, and media capital of the world, and exerts a significant impact upon commerce,entertainment, research, technology, education, politics, tourism, and sports. The city's fast pace defines the term New York minute. Home to the headquarters of the United Nations,New York is an important center for international diplomacy."
         textView.font = systemThinFont(size: 18)
         textView.isHidden = true
         textView.isEditable = false
@@ -74,6 +77,7 @@ class TourView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         
     }()
     
+  
     
     func setupViews(view: UIView) {
         
@@ -90,7 +94,7 @@ class TourView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: viewtest)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
-        view.addConstraintsWithFormat(format: "V:|[v0(\(view.frame.height / 3))][v1]|", views: viewtest, collectionView)
+        view.addConstraintsWithFormat(format: "V:|[v0(\(view.frame.height / 3))][v1]-25-|", views: viewtest, collectionView)
         viewtest.addConstraintsWithFormat(format: "H:|[v0]|", views: cityPhoto)
         viewtest.addConstraintsWithFormat(format: "V:|[v0]|", views: cityPhoto)
         viewtest.addConstraintsWithFormat(format: "H:|[v0]|", views: cityInfo)
@@ -101,12 +105,13 @@ class TourView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return citys.count
+        return tourPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ToursCell
-        cell.thumbnailImageView.image = UIImage(named: citys[indexPath.row])
+        cell.thumbnailImageView.image = UIImage(named: tourPhotos[indexPath.row])
+        cell.titleLabel.text = tourNames[indexPath.row]
         return cell
     }
     
@@ -126,7 +131,18 @@ class TourView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         delegate?.selectedItem()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let newCell = cell as! ToursCell
+        newCell.alpha = 0
+        newCell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
+        UIView.animate(withDuration: 0.4, animations: { () -> Void in
+            newCell.alpha = 1
+            newCell.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, 1, 1)
+        })
     }
     
 }

@@ -100,7 +100,7 @@ class DetailView: UIView {
         
         UIView.animate(withDuration: 0.3) { [weak textView] in
             let frame = textView?.frame
-            let yComponent = UIScreen.main.bounds.height - 150
+            let yComponent = UIScreen.main.bounds.height - 100
             textView?.frame = CGRect(x: 0, y: yComponent, width: (frame?.width)!, height: (frame?.height)!)
             
         }
