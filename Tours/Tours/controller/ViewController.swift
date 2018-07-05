@@ -19,7 +19,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let trendingCellId = "trendingId"
     let feedCell = FeedCell()
     let contentInsert: CGFloat = 65
-    var dumyData = [Tour]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

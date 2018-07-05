@@ -17,7 +17,7 @@ protocol CollectionCellDelegateSelected {
 class TourView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
     var delegate: CollectionCellDelegateSelected?
-    let download = DownloadHeandler()
+   
     
     let cellId = "cellID"
     
