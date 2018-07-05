@@ -9,5 +9,4 @@ target 'Tours' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Database'
-
 end

@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		1BC77EAB03FEF991DE6BA239 /* Pods_Tours.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DABD8AC425A20FE4CF86EC2 /* Pods_Tours.framework */; };
 		D719981E20E8CC79003FCD82 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719981D20E8CC78003FCD82 /* Appearance.swift */; };
-		D719982920EA4BFE003FCD82 /* Tours.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719982620EA4BFE003FCD82 /* Tours.swift */; };
-		D719982A20EA4BFE003FCD82 /* Markers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719982720EA4BFE003FCD82 /* Markers.swift */; };
-		D719982B20EA4BFE003FCD82 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719982820EA4BFE003FCD82 /* Tour.swift */; };
 		D7878BFE20D6981D00ADB5D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7878BFD20D6981D00ADB5D1 /* GoogleService-Info.plist */; };
 		D7878C0220DD78BF00ADB5D1 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7878C0120DD78BF00ADB5D1 /* MenuBar.swift */; };
 		D7878C0720DFFBFA00ADB5D1 /* TourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7878C0620DFFBFA00ADB5D1 /* TourCell.swift */; };
@@ -29,7 +26,6 @@
 		D7B528BF20EA99860016223A /* ToursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B528BE20EA99860016223A /* ToursViewController.swift */; };
 		D7B528C120EA99C00016223A /* TourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B528C020EA99C00016223A /* TourView.swift */; };
 		D7B528C320EB7A350016223A /* ToursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B528C220EB7A350016223A /* ToursCell.swift */; };
-		D7B528C520ED392C0016223A /* DataDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B528C420ED392C0016223A /* DataDownload.swift */; };
 		D7B674C320EE9D5500C3E731 /* Artworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B674C220EE9D5500C3E731 /* Artworks.swift */; };
 		D7ECC83F20E5764500DC1249 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7ECC83E20E5764500DC1249 /* MapKit.framework */; };
 /* End PBXBuildFile section */
@@ -39,9 +35,6 @@
 		1DABD8AC425A20FE4CF86EC2 /* Pods_Tours.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tours.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36781E621EB33A1026226703 /* Pods-Tours.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tours.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tours/Pods-Tours.release.xcconfig"; sourceTree = "<group>"; };
 		D719981D20E8CC78003FCD82 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
-		D719982620EA4BFE003FCD82 /* Tours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tours.swift; sourceTree = "<group>"; };
-		D719982720EA4BFE003FCD82 /* Markers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markers.swift; sourceTree = "<group>"; };
-		D719982820EA4BFE003FCD82 /* Tour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tour.swift; sourceTree = "<group>"; };
 		D7878BFD20D6981D00ADB5D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7878C0120DD78BF00ADB5D1 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		D7878C0620DFFBFA00ADB5D1 /* TourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCell.swift; sourceTree = "<group>"; };
@@ -61,7 +54,6 @@
 		D7B528BE20EA99860016223A /* ToursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToursViewController.swift; sourceTree = "<group>"; };
 		D7B528C020EA99C00016223A /* TourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourView.swift; sourceTree = "<group>"; };
 		D7B528C220EB7A350016223A /* ToursCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToursCell.swift; sourceTree = "<group>"; };
-		D7B528C420ED392C0016223A /* DataDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownload.swift; sourceTree = "<group>"; };
 		D7B674C220EE9D5500C3E731 /* Artworks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artworks.swift; sourceTree = "<group>"; };
 		D7ECC83E20E5764500DC1249 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -108,7 +100,6 @@
 				D7B528C020EA99C00016223A /* TourView.swift */,
 				D7A2DECE20E4E8EF006ED39E /* DetailView.swift */,
 				D7878C0E20E27DFD00ADB5D1 /* PopularCell.swift */,
-				D7B528C420ED392C0016223A /* DataDownload.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -170,9 +161,6 @@
 		D7A2DECB20E40597006ED39E /* models */ = {
 			isa = PBXGroup;
 			children = (
-				D719982720EA4BFE003FCD82 /* Markers.swift */,
-				D719982820EA4BFE003FCD82 /* Tour.swift */,
-				D719982620EA4BFE003FCD82 /* Tours.swift */,
 				D7B674C220EE9D5500C3E731 /* Artworks.swift */,
 			);
 			path = models;
@@ -307,21 +295,17 @@
 				D7B674C320EE9D5500C3E731 /* Artworks.swift in Sources */,
 				D7878C1120E2C28000ADB5D1 /* TrendingCell.swift in Sources */,
 				D7878C0920DFFCAF00ADB5D1 /* Extensions.swift in Sources */,
-				D719982A20EA4BFE003FCD82 /* Markers.swift in Sources */,
 				D795F31820D6906900C858D3 /* ViewController.swift in Sources */,
 				D795F31620D6906900C858D3 /* AppDelegate.swift in Sources */,
 				D7B528BF20EA99860016223A /* ToursViewController.swift in Sources */,
 				D7A2DECF20E4E8EF006ED39E /* DetailView.swift in Sources */,
-				D719982B20EA4BFE003FCD82 /* Tour.swift in Sources */,
 				D7878C0220DD78BF00ADB5D1 /* MenuBar.swift in Sources */,
-				D719982920EA4BFE003FCD82 /* Tours.swift in Sources */,
 				D7B528C320EB7A350016223A /* ToursCell.swift in Sources */,
 				D719981E20E8CC79003FCD82 /* Appearance.swift in Sources */,
 				D7878C0720DFFBFA00ADB5D1 /* TourCell.swift in Sources */,
 				D7878C0D20E260E700ADB5D1 /* FeedCell.swift in Sources */,
 				D7B528C120EA99C00016223A /* TourView.swift in Sources */,
 				D7878C0F20E27DFD00ADB5D1 /* PopularCell.swift in Sources */,
-				D7B528C520ED392C0016223A /* DataDownload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
