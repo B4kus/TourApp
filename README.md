@@ -8,8 +8,12 @@ Tour is an app that is trying to make exploring new cities easier. With this pro
 
 # Usage of app
 
-On main screen you can see cities where you can find available cities. When clicking on one of the cells it will take you to next screen where you can find tours. Clicking on image of top will flip to to text view with brief info about city. Choosing one of tours will move you to next screen with map and annotations. In this screen you can read some info about tour. 
+On main screen you can see list where you can find available cities. When clicking on one of the cells it will take you to next screen where you can find tours. Clicking on the image will flip to text view with brief info about city. Choosing one of tours will move you to next screen with map and annotations. In this screen you can read some info about tour. 
 
+
+# Keep in mind
+
+App is not fully working. Still there is a lot to do. Master has current working version with dummy data. 
 
 # Things to do 
 
@@ -20,3 +24,5 @@ On main screen you can see cities where you can find available cities. When clic
 ∆ Add geofencing 
 
 ∆ Some design improvements
+
+∆ Start naviagtion with buttom  
