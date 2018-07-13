@@ -26,3 +26,5 @@ App is not fully working. Still there is a lot to do. Master has current working
 ∆ Some design improvements
 
 ∆ Start naviagtion with buttom  
+
+∆ Fix some memory leaks
